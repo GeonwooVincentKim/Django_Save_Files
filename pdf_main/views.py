@@ -56,7 +56,7 @@ def test_streaming_csv_view(request):
     rows = (["Row {}".format(idx), str(idx)] for idx in range(65536))
     pseudo_buffer = Echo()
     writer = csv.writer(pseudo_buffer)
-    response = StreamingHttpResponse((writer.writerow(rows)
+    response = StreamingHttpResponse((writer.writerow(row)
                                       for row in rows), content_type="text/csv")
     response['Content-Disposition'] \
         = 'attachment;' \
